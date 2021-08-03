@@ -24,5 +24,5 @@ public class Club {
     private int yearCreation;
 
     private String players;
-    
+
 }
