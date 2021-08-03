@@ -1,6 +1,7 @@
 package com.example.footballworld.controller;
 
 import com.example.footballworld.model.Club;
+import com.example.footballworld.model.dto.ClubDTO;
 import com.example.footballworld.service.ClubService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class ClubController {
     }
 
     @PostMapping
-    public ResponseEntity<Club> createClub(@RequestBody Club club) {
+    public ResponseEntity<Club> createClub(@RequestBody ClubDTO club) {
         Club savedClub = clubService.save(club);
         return new ResponseEntity<>(savedClub, HttpStatus.CREATED);
     }
