@@ -1,14 +1,15 @@
 package com.example.footballworld.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = "club")
 public class Player {
 
     @Id
@@ -18,6 +19,12 @@ public class Player {
     private String firstName;
 
     private String lastName;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "club_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonBackReference
+    private Club club;
 
     private int matchesPlayed;
 
