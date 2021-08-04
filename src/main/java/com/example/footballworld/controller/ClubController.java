@@ -45,4 +45,8 @@ public class ClubController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/{id}/players/average-salary")
+    public ResponseEntity<Double> getPlayersAverageSalaryInClub(@PathVariable Long id) {
+        return ResponseEntity.ok(clubService.getPlayersAverageSalaryInClub(id));
+    }
 }

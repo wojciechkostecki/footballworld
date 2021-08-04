@@ -3,6 +3,7 @@ package com.example.footballworld.service;
 import com.example.footballworld.mapper.ClubMapper;
 import com.example.footballworld.model.Club;
 import com.example.footballworld.model.League;
+import com.example.footballworld.model.Player;
 import com.example.footballworld.model.dto.ClubDTO;
 import com.example.footballworld.repository.ClubRepository;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClubService {
@@ -26,7 +28,7 @@ public class ClubService {
     public Club save(ClubDTO clubDTO) {
         Club club = clubMapper.toEntity(clubDTO);
         League league = leagueService.findById(clubDTO.getLeagueId())
-                .orElseThrow(()->new EntityNotFoundException("Couldn't find a League with passed id"));
+                .orElseThrow(() -> new EntityNotFoundException("Couldn't find a League with passed id"));
         club.setLeague(league);
         league.getClubs().add(club);
         return clubRepository.save(club);
@@ -52,5 +54,11 @@ public class ClubService {
 
     public void delete(Long id) {
         clubRepository.deleteById(id);
+    }
+
+    public double getPlayersAverageSalaryInClub(Long id) {
+        Club club = findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Couldn't find a Club with passed id"));
+        return club.getPlayers().stream().collect(Collectors.averagingDouble(Player::getMonthlySalary));
     }
 }

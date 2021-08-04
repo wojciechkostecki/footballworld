@@ -8,7 +8,6 @@ import com.example.footballworld.repository.PlayerRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -59,11 +58,5 @@ public class PlayerService {
     public double getPlayersAverageSalary() {
         List<Player> players = playerRepository.findAll();
         return players.stream().collect(Collectors.averagingDouble(Player::getMonthlySalary));
-    }
-
-    public double getPlayersAverageSalaryInClub(Long id) {
-        Club club = clubService.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Couldn't find a Club with passed id"));
-        return club.getPlayers().stream().collect(Collectors.averagingDouble(Player::getMonthlySalary));
     }
 }
