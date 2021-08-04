@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/player")
+@RequestMapping("/api/players")
 public class PlayerController {
     private final PlayerService playerService;
 
@@ -45,4 +45,13 @@ public class PlayerController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/average-salary")
+    public ResponseEntity<Double> getPlayersAverageSalary() {
+        return ResponseEntity.ok(playerService.getPlayersAverageSalary());
+    }
+
+    @GetMapping("/average-salary/{clubId}")
+    public ResponseEntity<Double> getPlayersAverageSalaryInClub(@PathVariable Long clubId) {
+        return ResponseEntity.ok(playerService.getPlayersAverageSalaryInClub(clubId));
+    }
 }
