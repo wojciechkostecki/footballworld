@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ClubMapper extends EntityMapper<ClubDTO, Club>{
 
-    @Mapping(target = "id", source = "leagueId")
+    @Mapping(target = "league.id", source = "leagueId")
     Club toEntity(ClubDTO clubDTO);
 }
