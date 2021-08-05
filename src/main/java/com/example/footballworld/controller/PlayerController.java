@@ -3,6 +3,7 @@ package com.example.footballworld.controller;
 import com.example.footballworld.model.Player;
 import com.example.footballworld.model.dto.PlayerDTO;
 import com.example.footballworld.service.PlayerService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -53,6 +54,7 @@ public class PlayerController {
         return ResponseEntity.noContent().build();
     }
 
+    @ApiOperation(value = "Returns the average salary of all players.")
     @GetMapping("/average-salary")
     public ResponseEntity<Double> getPlayersAverageSalary() {
         return ResponseEntity.ok(playerService.getPlayersAverageSalary());
