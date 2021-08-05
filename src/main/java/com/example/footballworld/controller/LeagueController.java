@@ -43,5 +43,4 @@ public class LeagueController {
         leagueService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }
