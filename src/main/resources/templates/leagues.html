@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Football World</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <h1>Football World</h1>
+    <hr>
+    <h2>Leagues List</h2>
+
+    <a th:href="@{/view/showNewLeagueForm}" class="btn btn-primary btn-sm mb-3"> Add League </a>
+
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th>League Name</th>
+            <th>League Country</th>
+            <th> Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="league : ${listLeagues}">
+            <td th:text="${league.name}"></td>
+            <td th:text="${league.country}"></td>
+            <td><a th:href="@{/view/showFormForUpdate/{id}(id=${league.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/view/deleteLeague/{id}(id=${league.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
