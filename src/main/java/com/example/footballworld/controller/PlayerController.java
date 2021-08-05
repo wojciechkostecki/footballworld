@@ -5,11 +5,13 @@ import com.example.footballworld.model.dto.PlayerDTO;
 import com.example.footballworld.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api/players")
 public class PlayerController {
     private final PlayerService playerService;
@@ -18,13 +20,19 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
+    @GetMapping
+    public String viewPlayers(Model model) {
+        model.addAttribute("listPlayers", playerService.getAll());
+        return "players";
+    }
+
     @PostMapping
     public ResponseEntity<Player> createPlayer(@RequestBody PlayerDTO player) {
         Player savedPlayer = playerService.save(player);
         return new ResponseEntity<>(savedPlayer, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Player>> getAllPlayers() {
         return ResponseEntity.ok(playerService.getAll());
     }
