@@ -13,7 +13,7 @@
     <hr>
     <h2>Update League</h2>
 
-    <form action="#" th:action="@{/view/saveLeague}" th:object="${league}" method="POST">
+    <form action="#" th:action="@{/view/league/save}" th:object="${league}" method="POST">
 
         <input type="hidden" th:field="*{id}" />
         <input type="hidden" th:field="*{clubs}" />
