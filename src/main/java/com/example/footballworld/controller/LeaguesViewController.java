@@ -15,7 +15,7 @@ public class LeaguesViewController {
         this.leagueService = leagueService;
     }
 
-    @GetMapping
+    @GetMapping("/league")
     public String getAllLeagues(Model model) {
         model.addAttribute("listLeagues", leagueService.getAll());
         return "leagues";
@@ -31,7 +31,7 @@ public class LeaguesViewController {
     @PostMapping("/league/save")
     public String saveLeague(@ModelAttribute("league") League league) {
         leagueService.save(league);
-        return "redirect:/view";
+        return "redirect:/view/league";
     }
 
     @GetMapping("/league/update/{id}")
@@ -44,6 +44,6 @@ public class LeaguesViewController {
     @GetMapping("/league/delete/{id}")
     public String deleteLeague(@PathVariable Long id) {
         this.leagueService.delete(id);
-        return "redirect:/view";
+        return "redirect:/view/league";
     }
 }
