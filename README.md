@@ -31,7 +31,15 @@
 - Docker
 
 ## Setup
-Use the command  ```docker compose up```
+Use the commands:
+
+```git clone https://github.com/wojciechkostecki/footballworld.git```
+
+```cd footballworld```
+
+```docker-compose --file src/main/docker/app-local-dev.yml up```
+
+```mvn spring-boot:run```
 
 ## Views
 ![image](https://user-images.githubusercontent.com/62305866/128501989-535ceac3-7537-4ff7-b7f4-ba439b7cdeab.png)
