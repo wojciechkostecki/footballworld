@@ -31,8 +31,7 @@ public class LeagueService {
         League modifiedLeague = leagueRepository.getById(id);
         modifiedLeague.setName(league.getName());
         modifiedLeague.setCountry(league.getCountry());
-        modifiedLeague.setClubs(league.getClubs());
-        return save(modifiedLeague);
+        return leagueRepository.save(modifiedLeague);
     }
 
     public void delete(Long id) {

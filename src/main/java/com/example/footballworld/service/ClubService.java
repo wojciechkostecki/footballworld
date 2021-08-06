@@ -48,7 +48,6 @@ public class ClubService {
         modifiedClub.setCity(club.getCity());
         modifiedClub.setAddress(club.getAddress());
         modifiedClub.setYearCreation(club.getYearCreation());
-        modifiedClub.setPlayers(club.getPlayers());
         return clubRepository.save(modifiedClub);
     }
 

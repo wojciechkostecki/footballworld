@@ -44,7 +44,6 @@ public class PlayerService {
         Player modifiedPlayer = playerRepository.getById(id);
         modifiedPlayer.setFirstName(player.getFirstName());
         modifiedPlayer.setLastName(player.getLastName());
-        modifiedPlayer.setClub(player.getClub());
         modifiedPlayer.setMatchesPlayed(player.getMatchesPlayed());
         modifiedPlayer.setMinutesPlayed(player.getMinutesPlayed());
         modifiedPlayer.setMonthlySalary(player.getMonthlySalary());
